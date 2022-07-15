@@ -1,0 +1,16 @@
+{% extends "App1/padre.html" %} {% load static %} {% block contenido %}
+    <h1><strong>Formulario para agregar Pokemones a la Pokedex: </strong></h1>
+
+    {% if formulario.errors %}
+        <p style="color:red"><i>Hay algo errado en el pokemon que intentas crear</i></p>
+    {% endif %}
+
+    <form action="/App1/pokemonform/" method="POST"> {% csrf_token %}
+
+        <table>
+                {{ pokemonform.as_table }}
+        </table>
+        <input type="submit" class="btn btn-primary" value="Crear">
+
+    </form>
+    {% endblock %}

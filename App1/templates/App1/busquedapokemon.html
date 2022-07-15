@@ -1,0 +1,18 @@
+{% extends "App1/padre.html" %} {% load static %} {% block contenido %}
+    <h1><strong>Formulario para buscar pokemones ya registrados: </strong></h1>
+
+    {% if formulario.errors %}
+        <p style="color:red"><i>Hay algo errado en el ataque que intentas registrar</i></p>
+    {% endif %}
+
+    {% if error %}
+        <p style="color: red;"> {% error %}</p>
+
+        <form action="{ url 'buscar' }" method="GET">
+
+            <input type="number" name="comision" id="comision">
+    
+            <input type="submit" value="Buscar">
+
+    </form>
+    {% endblock %}
