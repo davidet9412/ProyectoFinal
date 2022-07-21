@@ -1,4 +1,9 @@
+from email.policy import default
 from django import forms
+from numpy import empty
+
+from App1.models import Tipo, Ataque
+
 
 class Pokemonform(forms.Form):
 
@@ -6,14 +11,12 @@ class Pokemonform(forms.Form):
     Mujer = "M"    
     genero_options = [(Hombre,"H"),(Mujer,"M")]
     nombre =  forms.CharField(max_length=50)
-    tipo_1 =  forms.CharField(max_length=50)
-    tipo_2 =  forms.CharField(max_length=50)
-    ataque_1= forms.CharField(max_length=50)
-    ataque_2= forms.CharField(max_length=50)
-    ataque_3= forms.CharField(max_length=50)
-    ataque_4= forms.CharField(max_length=50)
-    id_pokedex= forms.IntegerField()
-    genero = forms.ChoiceField(choices=genero_options)
+    tipo_1 =  forms.ModelChoiceField(queryset=Tipo.objects.all(),empty_label=None)
+    tipo_2 =  forms.ModelChoiceField(queryset=Tipo.objects.all(),empty_label="",required=False)
+    ataque_1= forms.ModelChoiceField(queryset=Ataque.objects.all(),empty_label=None)
+    ataque_2= forms.ModelChoiceField(queryset=Ataque.objects.all(),empty_label="",required=False)
+    ataque_3= forms.ModelChoiceField(queryset=Ataque.objects.all(),empty_label="",required=False)
+    ataque_4= forms.ModelChoiceField(queryset=Ataque.objects.all(),empty_label="",required=False)
 
 
 class Ataqueform(forms.Form):
@@ -24,9 +27,9 @@ class Ataqueform(forms.Form):
 
     nombre= forms.CharField(max_length=50)
     clase= forms.ChoiceField(choices=clase_ataque)
-    tipo= forms.CharField(max_length=50)
-    descripcion= forms.CharField(max_length=9999)
+    tipo= forms.ModelChoiceField(queryset=Tipo.objects.all(),empty_label=None)
+    descripcion= forms.CharField(max_length=9999,required=False)
 
 class Tipoform(forms.Form):
-    tipo_1 = forms.CharField(max_length=30)
-    tipo_2 = forms.CharField(max_length=30)
+    tipo = forms.CharField(max_length=30)
+   

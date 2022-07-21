@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
 from App1.models import *
@@ -49,10 +49,10 @@ def ataqueform(request):
             tipo =  info["tipo"]
             descripcion =  info["descripcion"]
             clase = info["clase"]          
-            pokemon = Pokemon(nombre=nombre,tipo=tipo,descripcion=descripcion,clase=clase)
-            pokemon.save()
-            form.clean()
-            return render(request,"App1/ataqueform.html", {"ataqueform":form})
+            ataque = Ataque(nombre=nombre,tipo=tipo,descripcion=descripcion,clase=clase)
+            ataque.save()
+            form = Ataqueform()
+            return render(request,"App1/ataqueform.html",{"ataqueform":form})
     
     else:
         form= Ataqueform()
@@ -64,12 +64,10 @@ def tipoform(request):
 
         if form.is_valid():
             info= form.cleaned_data
-            tipo_1 =  info["tipo_1"]
-            tipo_2 =  info["tipo_2"]
-                 
-            pokemon = Pokemon(tipo_1=tipo_1,tipo_2=tipo_2)
-            pokemon.save()
-            form.clean()
+            tipo_name =  info["tipo"]  
+            tipo = Tipo(tipo=tipo_name)
+            tipo.save()            
+            form=Tipoform()
             return render(request,"App1/tipoform.html", {"tipoform":form})
     
     else:
