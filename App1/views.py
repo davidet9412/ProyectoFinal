@@ -86,7 +86,12 @@ def buscar(request):
         return render(request, "App1/resultadopokemon.html", {"pokemon":pokemon})
 
     else:
-        return render(request, "App1/busquedapokemon", {"error":"No se ingreso ningun pokemon llamado ási "})
+        return render(request, "App1/busquedapokemon.html", {"error":"No se ingreso ningun pokemon llamado ási "})
+
+
+def resultadopokemon(request):
+
+    pass 
 
 
 
