@@ -1,0 +1,25 @@
+{% extends "App1/padre.html" %} {% load static %}
+{% block titulo %}
+
+<title>Perfil</title>
+
+{% endblock %}
+{% block contenido %}
+    {% if user %}
+        <div class="row my-3 p-3">
+            <h1>Este es el perfil de : {{user.username}}</h1>            
+            <img style="width: 200px; height: 200px;" src="{{ user.profile.avatar.url }}" alt="">
+            <p>Y esta es mi bio: {{user.profile.bio}} </p>
+        </div>
+
+        {% if request.user.username == user.username %} 
+
+        <a href=" {% url 'edit_profile' %} ">Editar Perfil</a>
+
+        {% endif %}
+    
+    {% else %}
+        <p>Usuario no encontrado</p>
+    {% endif %}
+
+{% endblock contenido %}

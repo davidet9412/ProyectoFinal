@@ -1,4 +1,4 @@
-{% extends "App1/padre.html" %} {% load static %} {% block contenido %}
+{% extends "App1/padre.html" %} {% load static %} {% block contenido %}{% load crispy_forms_tags %}
     <h1><strong>Formulario para agregar Pokemones a la Pokedex: </strong></h1>
 
     {% if formulario.errors %}
@@ -8,7 +8,7 @@
     <form action="/App1/pokemonform/" method="POST"> {% csrf_token %}
 
         <table>
-                {{ pokemonform.as_table }}
+                {{ pokemonform|crispy }}
         </table>
         <input type="submit" class="btn btn-primary" value="Crear">
 

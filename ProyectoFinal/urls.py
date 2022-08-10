@@ -16,8 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from App1.views import * 
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('',inicio, name='inicio'),
     path('admin/', admin.site.urls),
-    path('App1/', include('App1.urls'))
-]
+    path('App1/', include('App1.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('about/',about,name='about'),
+    path('ckeditr/',include('ckeditor_uploader.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# messages/
+
+# pages/
+# pages/<pageld>

@@ -1,0 +1,13 @@
+{% extends "App1/padre.html" %} {% load static %} {% block contenido %}
+
+
+
+<p class="card-text mb-auto py-2">{{ post.body|safe|striptags|truncatechars:100 }}</p>
+                             
+<div>
+  <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Read more</a>
+</div>
+
+
+
+{% endblock %}
