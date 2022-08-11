@@ -1,0 +1,20 @@
+{% extends "posts/padre.html" %} {% load static %} {% block contenido %}{% load crispy_forms_tags %}
+
+    {% if pokemon %}
+
+    <ul>   
+
+        {% for pokemon in pokemon %}
+    
+            <p> {{ pokemon.nombre }}</p>            
+            <br>
+            <hr>
+        {% endfor %}  
+        {% else %}
+            <p>No hay pokemones con este nombre !</p>    
+        </ul>
+        {% endif %}
+
+
+{% endblock %}
+

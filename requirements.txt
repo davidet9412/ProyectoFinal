@@ -1,2 +1,5 @@
 django-crispy-forms==1.14.0
 crispy-bootstrap5==0.6
+django-ckeditor==6.5.0
+Pillow==9.2.0
+channels==3.0.5

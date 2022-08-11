@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'App1',
-    'accounts',
     'crispy_forms',
     'crispy_bootstrap5',
     'ckeditor',
     'ckeditor_uploader',
+    'channels',
+    'posts',
+    'accounts',
+    'chat'
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'ProyectoFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["C:/Users/David\Documents/Project1/ProyectoFinal/ProyectoFinal/App1/templates"],
+        'DIRS': ["C:/Users/David\Documents/Project1/ProyectoFinal/ProyectoFinal/posts/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -169,5 +171,13 @@ CKEDITOR_CONFIGS = {
             'php': 'PHP',
             'python': 'Python',
         }
+    }
+}
+
+ASGI_APPLICATION = "ProyectoFinal.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }

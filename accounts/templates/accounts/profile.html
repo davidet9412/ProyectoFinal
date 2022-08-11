@@ -1,25 +1,42 @@
-{% extends "App1/padre.html" %} {% load static %}
-{% block titulo %}
-
-<title>Perfil</title>
-
-{% endblock %}
+{% extends "posts/padre.html" %}
+{% load static %}
+{% block titulo %}<title>Perfil</title>{% endblock %}
 {% block contenido %}
     {% if user %}
-        <div class="row my-3 p-3">
-            <h1>Este es el perfil de : {{user.username}}</h1>            
-            <img style="width: 200px; height: 200px;" src="{{ user.profile.avatar.url }}" alt="">
-            <p>Y esta es mi bio: {{user.profile.bio}} </p>
+        {% if request.user.username == user.username %}
+            <a href=" {% url 'edit_profile' %} ">Editar Perfil</a>
+        {% endif %}
+        <div class="d-flex flex-column justify-content-center align-items-center"
+             align="center">
+            <img class="border border-dark rounded-circle"
+                 style="width: 200px;
+                        height: 200px;"
+                 src="{{ user.profile.avatar.url }}"
+                 onerror="this.src='/media/default.png'">
+            <h1>{{ user.username | title }}</h1>
+            <p>{{ user.profile.bio }}</p>
         </div>
 
-        {% if request.user.username == user.username %} 
-
-        <a href=" {% url 'edit_profile' %} ">Editar Perfil</a>
-
-        {% endif %}
-    
+        <h4>Posts publicados por {{ user.username }}</h4>
+        <div class="list-group">
+            {% for post in posts %}
+                <a href="{% url 'post_details' post.slug %}"
+                   class="list-group-item list-group-item-action d-flex flex-row border border-dark">
+                    <img class="inline"
+                         src="post.imagen.url"
+                         onerror="this.src='/media/default.png'">
+                    <div class="flex-column align-items-start w-100">
+                        <div class="d-flex flex-row justify-content-between">
+                            <h5 class="mb-1">{{ post.titulo }}</h5>
+                            <small>{% firstof post.fecha_publicacion "Pendiente por publicar" %}</small>
+                        </div>
+                        <p class="mb-1">{{ post.subtitulo }}</p>
+                        <small>{{ post.descripcion }}</small>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     {% else %}
         <p>Usuario no encontrado</p>
     {% endif %}
-
 {% endblock contenido %}

@@ -11,5 +11,4 @@ urlpatterns = [
     path('profile/<username>',profile , name='profile'),
     path('edit_profile/',edit_profile, name='edit_profile'),
     path('editar_usuario/',editar_usuario, name='editar_usuario'),
-    path('post/<int:pk>',ArticleDetailView.as_view(), name= 'post_details'),
 ]

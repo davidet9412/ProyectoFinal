@@ -1,0 +1,13 @@
+{% extends "posts/padre.html" %} {% load static %} {% block contenido %}
+    <h1><strong>Formulario para buscar pokemones ya registrados: </strong></h1>
+
+
+        <form action="{% url 'buscar' %}" method="GET">
+
+            <input type="text" name="pokemon">
+    
+            <input type="submit" value="Buscar">
+    
+
+        </form>
+    {% endblock %}

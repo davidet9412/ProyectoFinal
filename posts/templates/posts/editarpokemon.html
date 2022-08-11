@@ -1,0 +1,18 @@
+{% extends "posts/padre.html" %} {% load static %} {% block contenido %}{% load crispy_forms_tags %}
+
+    <h1>Editando el  Pokemon {{ nombre_pokemon }}</h1>
+
+    {% if formulario.errors %}
+        <p style="color: red;"><strong>HAY ALGO MAL EN EL FORMULARIO</strong></p>
+    {% endif %}    
+
+    <form action="{% url 'editarpokemon' nombre_pokemon %}" method="POST"> {% csrf_token %}
+
+        <table>
+            {{ formulario|crispy}}
+        </table>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+{% endblock %}

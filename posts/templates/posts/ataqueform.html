@@ -1,0 +1,16 @@
+{% extends "posts/padre.html" %} {% load static %} {% block contenido %}{% load crispy_forms_tags %}
+    <h1><strong>Formulario para registrar Ataques a la Pokedex: </strong></h1>
+
+    {% if formulario.errors %}
+        <p style="color:red"><i>Hay algo errado en el ataque que intentas registrar</i></p>
+    {% endif %}
+
+    <form action="/posts/ataqueform/" method="POST"> {% csrf_token %}
+
+        <table>
+                {{ ataqueform|crispy}}
+        </table>
+        <input type="submit" class="btn btn-primary" value="Crear">
+
+    </form>
+    {% endblock %}
